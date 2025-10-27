@@ -18,4 +18,24 @@ class StudentController extends Controller
         dd($student->nama_lengkap);
         return view("studentproject", compact("student"));
     }
+
+    public function createStudent(){
+        return view("students.create");
+    }
+
+    public function store(Request $request){
+        //validasi data
+        $validated = $request->validate([
+            'nama_lengkap' => 'required',
+            'nis' => 'required|unique:students|numeric',
+            'kelas'=>'required',
+            'alamat'=>'required'
+        ]);
+
+        //memasukkan record ke database
+        Student::create($validated);
+
+        //redirect
+        return redirect()->route("students.all")->with("success","data berhasil ditambahkan");
+    }
 }
