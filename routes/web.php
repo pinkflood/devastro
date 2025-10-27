@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
@@ -42,3 +43,5 @@ Route::get("/profil/{nama}/{status}", [PagesController::class,"profil"]);
 Route::get('/students',[StudentController::class,"getAllStudents"]);
 
 Route::get('/student/{id}',[StudentController::class, "getStudent"]);
+
+Route::get('/project/{tahun}', [ProjectController::class, "getProjectByTahun"]);
